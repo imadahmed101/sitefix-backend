@@ -1,6 +1,7 @@
 const router = require('express').Router()
 
 const {
+    getStudent,
     login,
     register,
     landing,
@@ -17,6 +18,7 @@ const {
 
 const { validator, validate } = require('../middlewares/validator')
 
+router.get('/', getStudent)
 
 router.post('/login', login)
 
@@ -41,6 +43,8 @@ router.post('/verifyemail', verifyEmail)
 router.post('/resetcode', resetCode)
 
 router.post('/resetpassword', resetPassword)
+
+
 
 
 

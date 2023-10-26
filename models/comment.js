@@ -16,7 +16,12 @@ const commentSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
-    }
+    },
+    isApproved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     
 },
 {timestamps: true,

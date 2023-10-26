@@ -78,10 +78,10 @@ const register = async (req, res) => {
 
 const landing = async (req, res) => {
 
-    const student = req.body.student
-    const id = student.split('"')[3]
-    const username = student.split('"')[11]
-    const token = student.split('"')[15]
+    const {student, id} = req.body
+    // const id = student.split('"')[3]
+    // const username = student.split('"')[11]
+    // const token = student.split('"')[15]
 
     try {
         const result = await studentSchema.findOne({ _id: id })
@@ -101,8 +101,7 @@ const landing = async (req, res) => {
 
 
 const editProfile = async (req, res) => {
-    const { firstName, lastName, student } = req.body
-    const id = student.split('"')[3]
+    const { firstName, lastName, id } = req.body
 
     try {
         const result = await studentSchema.findByIdAndUpdate({ _id: id }, { firstName, lastName })
@@ -115,10 +114,10 @@ const editProfile = async (req, res) => {
 
 const education = async (req, res) => {
 
-    const student = req.body.student
-    const id = student.split('"')[3]
-    const username = student.split('"')[11]
-    const token = student.split('"')[15]
+    const {student, id} = req.body
+    // const id = student.split('"')[3]
+    // const username = student.split('"')[11]
+    // const token = student.split('"')[15]
 
     try {
         const result = await studentSchema.findOne({ _id: id })
@@ -136,8 +135,8 @@ const education = async (req, res) => {
 }
 
 const editEducation = async (req, res) => {
-    const { highestDegree, schoolName, schoolAddress, student } = req.body
-    const id = student.split('"')[3]
+    const { highestDegree, schoolName, schoolAddress, id } = req.body
+    // const id = student.split('"')[3]
 
     try {
 
@@ -151,10 +150,10 @@ const editEducation = async (req, res) => {
 
 const work = async (req, res) => {
 
-    const student = req.body.student
-    const id = student.split('"')[3]
-    const username = student.split('"')[11]
-    const token = student.split('"')[15]
+    const {student, id} = req.body
+    // const id = student.split('"')[3]
+    // const username = student.split('"')[11]
+    // const token = student.split('"')[15]
 
     try {
         const result = await studentSchema.findOne({ _id: id })
@@ -174,8 +173,8 @@ const work = async (req, res) => {
 }
 
 const editWork = async (req, res) => {
-    const { experienceLevel, jobTitle, companyName, jobProfile, skills, student } = req.body
-    const id = student.split('"')[3]
+    const { experienceLevel, jobTitle, companyName, jobProfile, skills, student, id } = req.body
+    // const id = student.split('"')[3]
 
     try {
         const result = await studentSchema.findByIdAndUpdate({ _id: id }, { experienceLevel, jobTitle, companyName, jobProfile, skills })
@@ -324,6 +323,15 @@ const resetPassword = async (req, res) => {
 
 }
 
+const getStudent = async (req, res) => {
+    try {
+        const result = await studentSchema.find({})
+        res.json(result)
+    } catch (error) {
+        res.status(401).json(message = error.message)
+    }
+}
+
 module.exports = {
     login,
     register,
@@ -336,5 +344,6 @@ module.exports = {
     viewProfile,
     verifyEmail,
     resetCode,
-    resetPassword
+    resetPassword,
+    getStudent
 }
